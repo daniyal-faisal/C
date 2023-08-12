@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*Situation4:
+
+/*Situation:
 You are tasked with creating a program that calculates
 the factorial of a non-negative integer. The factorial
 of a number is the product of all positive integers less
