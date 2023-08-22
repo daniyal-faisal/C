@@ -38,13 +38,18 @@ int main()
     fclose(file);
 
     file = fopen("data.txt", "r");
+    
     char line[255];
+    
     printf("\n");
     printf("Output:\n");
+    
     while(fgets(line, 255, file) != NULL)
     {
         printf("%s", line);
     }
+    
+    fclose(file);
 
     return 0;
 }
