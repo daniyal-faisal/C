@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 
 int main()
@@ -41,8 +42,7 @@ int main()
     
     char line[255];
     
-    printf("\n");
-    printf("Output:\n");
+    printf("\nOutput:\n");
     
     while(fgets(line, 255, file) != NULL)
     {
