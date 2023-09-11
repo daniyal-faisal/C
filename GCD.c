@@ -59,6 +59,6 @@ int main()
         printf("%d ", NUM3[ll]);
     }
 
-    printf("THE GCD IS %d",NUM3[ll - 1]);
+    printf("\nTHE GCD IS %d",NUM3[ll - 1]);
     return 0;
 }
