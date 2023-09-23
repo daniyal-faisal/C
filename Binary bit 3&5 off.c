@@ -1,3 +1,8 @@
+/*
+Write a C program to receive an 8-bit number into a variable and then check if
+its 3rd and 5th bits are on. If these bits are found to be on, then put them off.
+*/
+
 #include<stdio.h>
 int main()
 {
