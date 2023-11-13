@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #weather-container {
+            margin-top: 50px;
+        }
+        #loading {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Weather App</h1>
+
+    <label for="city">Enter City:</label>
+    <input type="text" id="city" placeholder="Enter city name">
+    <button onclick="getWeather()">Get Weather</button>
+
+    <div id="loading">Loading...</div>
+    <div id="weather-container"></div>
+
+    <script>
+        function getWeather() {
+            const apiKey = 'd8bf48d0b53daf1a6a0ac122ed75fa0b';
+            const city = document.getElementById('city').value;
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
+            // Show loading message
+            document.getElementById('loading').style.display = 'block';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Hide loading message
+                    document.getElementById('loading').style.display = 'none';
+
+                    if (data.cod === '404') {
+                        alert('City not found. Please enter a valid city name.');
+                    } else {
+                        displayWeather(data);
+                    }
+                })
+                .catch(error => {
+                    // Hide loading message
+                    document.getElementById('loading').style.display = 'none';
+
+                    console.error('Error:', error);
+                    alert('An error occurred. Please check the console for details.');
+                });
+        }
+
+        function displayWeather(data) {
+            const weatherContainer = document.getElementById('weather-container');
+            weatherContainer.innerHTML = '';
+
+            const cityName = document.createElement('h2');
+            cityName.textContent = `${data.name}, ${data.sys.country}`;
+            weatherContainer.appendChild(cityName);
+
+            const temperature = document.createElement('p');
+            temperature.textContent = `Temperature: ${data.main.temp}°C`;
+            weatherContainer.appendChild(temperature);
+
+            const weatherDescription = document.createElement('p');
+            weatherDescription.textContent = `Weather: ${data.weather[0].description}`;
+            weatherContainer.appendChild(weatherDescription);
+
+            const humidity = document.createElement('p');
+            humidity.textContent = `Humidity: ${data.main.humidity}%`;
+            weatherContainer.appendChild(humidity);
+
+            const windSpeed = document.createElement('p');
+            windSpeed.textContent = `Wind Speed: ${data.wind.speed} m/s`;
+            weatherContainer.appendChild(windSpeed);
+        }
+    </script>
+
+</body>
+</html>
